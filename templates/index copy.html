@@ -1,0 +1,551 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>{{setting.title}}</title>
+  <meta content="{{setting.description}}" name="description">
+  <meta content="{{setting.keywords}}" name="keywords">
+  <meta name="yandex-verification" content="5e817db5d8305b2e" />
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171154551-1"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-171154551-1');
+  </script>
+
+
+  <!-- Favicons -->
+  <link href="{{setting.icon.url}}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Dewi - v2.1.0
+  * Template URL: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  <style>
+    #hero {
+      width: 100%;
+      height: 100vh;
+      background: url("{{setting.image.url}}") top center;
+      background-size: cover;
+      position: relative;
+      padding: 0;
+}
+  </style>
+</head>
+
+<body>
+
+
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container" data-aos="fade-up" data-aos-delay="150">
+      <h1>{{setting.header}}</h1>
+      <h2>{{setting.content}}</h2>
+      <div class="d-flex align-items-end">
+        <a href="#about" class="btn-get-started scrollto">Giriş</a>
+        <a href="{{setting.youtube_url}}" class="venobox btn-watch-video" data-vbtype="video" data-autoplay="true"> Watch Video <i class="icofont-play-alt-2"></i></a>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row justify-content-end">
+          <div class="col-lg-11">
+            <div class="row justify-content-end">
+             {% for logo in about.aboutlogo_set.all %}
+              <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+                <div class="count-box">
+                  <i class="{{logo.font}}"></i>
+                  <span data-toggle="counter-up">{{logo.number}}</span>
+                  <p>{{logo.title}}</p>
+                </div>
+              </div>
+             {% endfor %}
+             
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-6 video-box align-self-baseline" data-aos="zoom-in" data-aos-delay="100">
+            <img src="{{about.about_image.url}}" class="img-fluid" alt="Hakkımızda">
+            <a href="{{about.about_youtube_url}}" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+          </div>
+
+          <div class="col-lg-6 pt-3 pt-lg-0 content">
+            <h3>{{about.title}}</h3>
+            <p class="font-italic">
+              {{about.sub_content}}
+            </p>
+            <!-- ======= About Checkbox Section ======= 
+            <ul>
+              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+              <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+              <li><i class="bx bx-check-double"></i> Voluptate repellendus pariatur reprehenderit corporis sint.</li>
+              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+            </ul>
+            -->
+            <p>
+              {{about.content|safe}}
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= About Boxes Section ======= -->
+    <section id="about-boxes" class="about-boxes">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+         {% for mission in missions %} 
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="card">
+              <img src="{{mission.image.url}}" class="card-img-top" alt="{{mission.title}}">
+              <div class="card-icon">
+                <i class="{{mission.font}}"></i>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><a href="">{{mission.title}}</a></h5>
+                <p class="card-text">{{mission.content}}</p>
+              </div>
+            </div>
+          </div>
+         {% endfor  %} 
+        </div>
+
+      </div>
+    </section><!-- End About Boxes Section -->
+
+    <!-- ======= Clients Section ======= -->
+    <section id="clients" class="clients">
+      <div class="container" data-aos="zoom-in">
+
+        <div class="row">
+        {% for partner in partners %}
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="{{partner.image.url}}" class="img-fluid" alt="{{partner.title}}">
+          </div>
+        {% endfor %}
+          
+
+        </div>
+
+      </div>
+    </section><!-- End Clients Section -->
+
+    <!-- ======= Features Section ======= -->
+   {% if setting.features %} 
+    <section id="features" class="features">
+      <div class="container" data-aos="fade-up">
+
+        <ul class="nav nav-tabs row d-flex">
+         {% for feature in features %} 
+          <li class="nav-item col-3">
+            <a class="nav-link {% if feature.ranking == 1  %} active show {% endif %}" data-toggle="tab" href="#tab-{{feature.ranking}}">
+              <i class="{{feature.font}}"></i>
+              <h4 class="d-none d-lg-block">{{feature.font_title}}</h4>
+            </a>
+          </li>
+          {% endfor %} 
+        </ul>
+       
+        <div class="tab-content">
+         {% for feature in features %}
+          <div class="tab-pane {% if feature.ranking == 1  %} active show {% endif %}" id="tab-{{feature.ranking}}">
+            <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                <h3>{{feature.title}}</h3>
+                <p class="font-italic">
+                  {{feature.sub_content}}
+                </p>
+                <p>
+                  {{feature.content|safe}}
+                </p>
+              </div>
+              <div class="col-lg-6 order-1 order-lg-2 text-center">
+                <img src="{{feature.image.url}}" alt="{{feature.title}}" class="img-fluid">
+              </div>
+            </div>
+          </div>
+         {% endfor %}
+        </div>
+
+      </div>
+    </section>
+   {% endif %} 
+    <!-- End Features Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Hizmetlerimiz</h2>
+          <p>Hizmetlerimize göz atın</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="200">
+         {% for service in services %} 
+          <div class="col-md-6 mb-3">
+            <div class="icon-box h-100">
+              <i class="{{service.font}}"></i>
+              <h4><a href="{{service.get_absolute_url}}">{{service.title}}</a></h4>
+              <p>{{service.home_content|truncatechars:150}}</p>
+            </div>
+          </div>
+         {% endfor %}          
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+   {% if setting.testimonials %} 
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container" data-aos="zoom-in">
+
+        <div class="owl-carousel testimonials-carousel">
+         {% for testimonials in testimonials %}
+          <div class="testimonial-item">
+            <img src="{{testimonials.image.url}}" class="testimonial-img" alt="{{testimonials.title}}">
+            <h3>{{testimonials.title}}</h3>
+            <h4>{{testimonials.subtitle}}</h4>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              {{testimonials.content}}
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+         {% endfor %} 
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+   {% endif %} 
+
+    <!-- ======= Solution Section ======= -->
+    <section id="solutions" class="services section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Çözümlerimiz</h2>
+          <p>Çözümlerimize göz atın</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="200">
+         {% for solution in solutions %} 
+          <div class="col-md-6 mb-3">
+            <div class="icon-box h-100">
+              <i class="{{solution.font}}"></i>
+              <h4><a href="{{solution.get_absolute_url}}">{{solution.title}}</a></h4>
+              <p>{{solution.home_content|truncatechars:150}}</p>
+            </div>
+          </div>
+         {% endfor %}          
+        </div>
+
+      </div>
+    </section><!-- End Solution Section -->
+    
+
+        <!-- ======= Solution Section ======= -->
+        <section id="softwares" class="services section-bg">
+          <div class="container" data-aos="fade-up">
+    
+            <div class="section-title">
+              <h2>SEO </h2>
+              <p>SEO Çözümlerimize göz atın</p>
+            </div>
+    
+            <div class="row" data-aos="fade-up" data-aos-delay="200">
+             {% for solution in softwares %} 
+              <div class="col-md-6 mb-3">
+                <div class="icon-box h-100">
+                  <i class="{{solution.font}}"></i>
+                  <h4><a href="{{solution.get_absolute_url}}">{{solution.title}}</a></h4>
+                  <p>{{solution.home_content|truncatechars:150}}</p>
+                </div>
+              </div>
+             {% endfor %}          
+            </div>
+    
+          </div>
+        </section><!-- End Solution Section -->   
+
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Referanslar</h2>
+          <p>Referanslara Göz atın</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">Hepsi</li>
+             {% for company_type in company_types %} 
+              <li data-filter=".{{company_type.title}}">{{company_type.title}}</li>
+             {% endfor %} 
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+         {% for reference in references %} 
+          <div class="col-lg-4 col-md-6 portfolio-item {{reference.company_type.title}}">
+            <img src="{{reference.image.url}}" class="img-fluid" alt="{{reference.title}}">
+            <div class="portfolio-info">
+              <h4>{{reference.title}}</h4>
+              <p>{{reference.content}}</p>
+            </div>
+          </div>
+         {% endfor %}   
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+
+   {% if setting.teams %} 
+    <!-- ======= Team Section ======= -->
+    <section id="team" class="team section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Ekibimiz</h2>
+          <p>Ekibimize Göz Atın</p>
+        </div>
+
+        <div class="row">
+         {% for member in members %}
+          <div class="col-lg-4 col-md-6">
+            <div class="member" data-aos="fade-up" data-aos-delay="100">
+              <div class="pic"><img src="{% static 'assets/img/team/team-1.jpg' %}" class="img-fluid" alt="Ekibimiz"></div>
+              <div class="member-info">
+                <h4>{{member.name}}</h4>
+                <span>{{member.job}}</span>
+                <div class="social">
+                  <a href="{{member.twitter_url}}"><i class="icofont-twitter"></i></a>
+                  <a href="{{facebook_url}}"><i class="icofont-facebook"></i></a>
+                  <a href="{{instagram_url}}"><i class="icofont-instagram"></i></a>
+                  <a href="{{linkedin_url}}"><i class="icofont-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+         {% endfor %}
+        </div>
+
+      </div>
+    </section><!-- End Team Section -->
+   {% endif %}
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up"">
+
+    <div class=" section-title">
+        <h2>İletişim</h2>
+        <p>Bize Ulaşın</p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-6">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="info-box">
+                <i class="bx bx-map"></i>
+                <h3>Adres</h3>
+                <p>{{contact.addresse}}</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="info-box mt-4">
+                <i class="bx bx-envelope"></i>
+                <h3>Email</h3>
+                
+                <p>{% for member in contact.member.all %} {{member.email}}<br> {% endfor %}</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="info-box mt-4">
+                <i class="bx bx-phone-call"></i>
+                <h3>Telefon</h3>
+                <p>{% for member in contact.member.all %} {{member.number}}<br> {% endfor %}</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-lg-6 mt-4 mt-lg-0" id = "form">
+
+          {% if messages %}
+          {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            {{ message }}
+          </div>
+        {% endfor %}
+          
+          {%endif %}
+
+          <form action ="#form" method="post" novalidate>
+            {% csrf_token %}			
+            
+            <div class="form-row">
+              <div class="form-group col-6 mb-0">
+                {{ form.name|as_crispy_field }}
+              </div>
+              <div class="form-group col-6 mb-0">
+                {{ form.email|as_crispy_field }}
+              </div>
+            </div>
+            {{ form.topic|as_crispy_field }}
+            {{ form.content|as_crispy_field }}
+              <button type="submit" class="btn btn-success btn-block btn-sm">Kaydet</button>
+          </form>
+        </div>
+
+      </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3>{{setting.title}}</h3>
+              <p>
+                {{setting.adresse}}<br>
+                <strong>Tel:</strong> {{setting.phone}}<br>
+                <strong>Email:</strong> {{setting.email}}<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="{{setting.twitter_url}}" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="{{setting.facebook_url}}" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="{{setting.instagram_url}}" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="{{setting.skype_url}}" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="{{setting.linkedin_url}}" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Faydalı Linkler</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'home:home' %}">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about">Hakkımızda</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services">Hizmetlerimiz</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#solutions">Çözümlerimiz</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Hizmetlerimiz</h4>
+            <ul>
+             {% for service in services %} 
+              <li><i class="bx bx-chevron-right"></i> <a href="{{service.get_absolute_url}}">{{service.title}}</a></li>
+             {% endfor %}
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Çözümlerimiz</h4>
+            <ul>
+             {% for solution in solutions %} 
+              <li><i class="bx bx-chevron-right"></i> <a href="{{solution.get_absolute_url}}">{{solution.title}}</a></li>
+             {% endfor %}
+            </ul>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>{{setting.title}}</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/ -->
+        Designed by <a href="https://www.sofistech.net/">Sofistech Business Solutions</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/waypoints/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>
